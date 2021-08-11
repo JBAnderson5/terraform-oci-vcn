@@ -159,7 +159,7 @@ data "oci_core_nat_gateways" "nat_gateway" {
     #Optional
     #display_name = var.nat_gateway_display_name
     #state = var.nat_gateway_state
-    vcn_id = oci_core_vcn.test_vcn.id
+    vcn_id = data.oci_core_vcn.vcn.id
 }
 
 /*
