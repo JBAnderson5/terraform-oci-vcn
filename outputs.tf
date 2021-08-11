@@ -28,12 +28,12 @@ output "service_gateway_id" {
 
 output "ig_route_id" {
   description = "id of internet gateway route table"
-  value       = join(",", data.oci_core_route_table.default[*].id)#TODO:check if finding datasource, then fix datasource
+  value       = join(",", data.oci_core_route_tables.default[*].id)#TODO:check if finding datasource, then fix datasource
 }
 
 output "nat_route_id" {
   description = "id of VCN NAT gateway route table"
-  value       = join(",", oci_core_route_table.default[*].id)
+  value       = join(",", oci_core_route_tables.default[*].id)
 }
 
 
@@ -53,12 +53,12 @@ output "drg_attachment_all_attributes" {
 
 output "internet_gateway_all_attributes" {
   description = "all attributes of created internet gateway"
-  value       = { for k, v in data.oci_core_internet_gateways.default : k => v }
+  value       = { for k, v in data.oci_core_internet_gateways.ig : k => v }
 }
 
 output "ig_route_all_attributes" {
   description = "all attributes of created ig route table"
-  value       = { for k, v in oci_core_route_table.default : k => v }
+  value       = { for k, v in oci_core_route_tables.default : k => v }
 }
 
 
@@ -74,7 +74,7 @@ output "nat_gateway_all_attributes" {
 
 output "nat_route_all_attributes" {
   description = "all attributes of created nat gateway route table"
-  value       = { for k, v in oci_core_route_table.default : k => v }
+  value       = { for k, v in oci_core_route_tables.default : k => v }
 }
 
 output "service_gateway_all_attributes" {
