@@ -3,6 +3,8 @@
 
 # VCN default Security List Lockdown
 // See Issue #22 for the reasoning
+
+/*
 resource "oci_core_default_security_list" "lockdown" {
   // If variable is true, removes all rules from default security list
   manage_default_resource_id = oci_core_vcn.vcn.default_security_list_id
@@ -53,3 +55,5 @@ resource "oci_core_default_security_list" "restore_default" {
 
   count = var.lockdown_default_seclist == false ? 1 : 0
 }
+
+*/

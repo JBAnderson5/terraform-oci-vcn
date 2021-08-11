@@ -4,7 +4,7 @@
 ########################
 # Internet Gateway (IGW)
 ########################
-
+/*
 resource "oci_core_internet_gateway" "ig" {
   compartment_id = var.compartment_id
   display_name   = var.label_prefix == "none" ? "internet-gateway" : "${var.label_prefix}-internet-gateway"
@@ -15,7 +15,14 @@ resource "oci_core_internet_gateway" "ig" {
 
   count = var.internet_gateway_enabled == true ? 1 : 0
 }
+*/
+data "oci_core_internet_gateways" "ig" {
+    #Required
+    compartment_id = var.compartment_id
+    vcn_id = data.oci_core_vcn.vcn.id
+}
 
+/*
 resource "oci_core_route_table" "ig" {
   compartment_id = var.compartment_id
   display_name   = var.label_prefix == "none" ? "internet-route" : "${var.label_prefix}-internet-route"
@@ -76,10 +83,12 @@ resource "oci_core_route_table" "ig" {
 
   count = var.internet_gateway_enabled == true ? 1 : 0
 }
+*/
 
 #######################
 # Service Gateway (SGW)
 #######################
+/*
 data "oci_core_services" "all_oci_services" {
   filter {
     name   = "name"
@@ -88,7 +97,10 @@ data "oci_core_services" "all_oci_services" {
   }
   count = var.service_gateway_enabled == true ? 1 : 0
 }
+*/
 
+
+/*
 resource "oci_core_service_gateway" "service_gateway" {
   compartment_id = var.compartment_id
   display_name   = var.label_prefix == "none" ? "service-gateway" : "${var.label_prefix}-service-gateway"
@@ -102,10 +114,19 @@ resource "oci_core_service_gateway" "service_gateway" {
 
   count = var.service_gateway_enabled == true ? 1 : 0
 }
+*/
+
+data "oci_core_service_gateways" "service_gateway" {
+    #Required
+    compartment_id = var.compartment_id
+    vcn_id = data.oci_core_vcn.vcn.id
+}
 
 ###################
 # NAT Gateway (NGW)
 ###################
+
+/*
 resource "oci_core_nat_gateway" "nat_gateway" {
   compartment_id = var.compartment_id
   display_name   = var.label_prefix == "none" ? "nat-gateway" : "${var.label_prefix}-nat-gateway"
@@ -118,7 +139,13 @@ resource "oci_core_nat_gateway" "nat_gateway" {
 
   count = var.nat_gateway_enabled == true ? 1 : 0
 }
+*/
+data "oci_core_nat_gateway" "nat_gateway" {
+    #Required
+    nat_gateway_id = data.oci_core_nat_gateway.nat_gateway.id
+}
 
+/*
 resource "oci_core_route_table" "nat" {
   compartment_id = var.compartment_id
   display_name   = var.label_prefix == "none" ? "nat-route" : "${var.label_prefix}-nat-route"
@@ -192,6 +219,7 @@ resource "oci_core_route_table" "nat" {
 
   count = var.nat_gateway_enabled == true ? 1 : 0
 }
+*/
 
 ###############################
 # Dynamic Routing Gateway (DRG)
