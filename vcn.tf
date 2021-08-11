@@ -15,6 +15,6 @@ resource "oci_core_vcn" "vcn" {
 
 data "oci_core_vcn" "vcn" {
     #Required
-    vcn_id = var.vcn.id
+    vcn_id = var.vcn_id
 
 }

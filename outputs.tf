@@ -25,16 +25,17 @@ output "service_gateway_id" {
   description = "id of service gateway if it is created"
   value       = join(",", data.oci_core_service_gateways.service_gateway[*].id)
 }
-
+/*TODO: low priority fix if nothing uses these vars upstream
 output "ig_route_id" {
   description = "id of internet gateway route table"
-  value       = join(",", oci_core_route_table.ig[*].id)
+  value       = join(",", data.oci_core_route_table.ig[*].id)#TODO:check if finding datasource, then fix datasource
 }
 
 output "nat_route_id" {
   description = "id of VCN NAT gateway route table"
   value       = join(",", oci_core_route_table.nat[*].id)
 }
+*/
 
 # New complete outputs for each resources with provider parity. Auto-updating.
 # Usefull for module composition.
@@ -49,6 +50,7 @@ output "drg_attachment_all_attributes" {
   value       = { for k, v in oci_core_drg_attachment.drg : k => v }
 }
 
+/*
 output "internet_gateway_all_attributes" {
   description = "all attributes of created internet gateway"
   value       = { for k, v in data.oci_core_internet_gateways.ig : k => v }
@@ -58,6 +60,7 @@ output "ig_route_all_attributes" {
   description = "all attributes of created ig route table"
   value       = { for k, v in oci_core_route_table.ig : k => v }
 }
+*/
 
 output "lpg_all_attributes" {
   description = "all attributes of created lpg"

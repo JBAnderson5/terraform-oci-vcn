@@ -12,6 +12,14 @@ variable "region" {
   default     = null
 }
 
+#new parameters for loading VCN
+variable "vcn_id" {
+  description = "the OCID of a currently existing vcn in the compartment specified"
+  type        = string
+  default     = null
+}
+
+
 # general oci parameters
 
 variable "compartment_id" {
