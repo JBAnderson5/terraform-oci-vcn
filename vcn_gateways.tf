@@ -22,16 +22,16 @@ data "oci_core_internet_gateways" "ig" {
     vcn_id = data.oci_core_vcn.vcn.id
 }
 
-/* I don't think loading the route table datasource is necessary rn
-data "oci_core_route_tables" "ig" {
+
+data "oci_core_route_tables" "default" {
     #Required
     compartment_id = var.compartment_id
 
     #Optional
-    display_name = var.route_table_display_name
-    vcn_id = oci_core_vcn.test_vcn.id
+    #display_name = var.route_table_display_name
+    vcn_id = data.oci_core_vcn.vcn.id
 }
-*/
+
 
 /*
 resource "oci_core_route_table" "ig" {
