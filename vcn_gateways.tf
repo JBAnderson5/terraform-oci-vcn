@@ -151,9 +151,15 @@ resource "oci_core_nat_gateway" "nat_gateway" {
   count = var.nat_gateway_enabled == true ? 1 : 0
 }
 */
-data "oci_core_nat_gateway" "nat_gateway" {
+
+data "oci_core_nat_gateways" "nat_gateway" {
     #Required
-    nat_gateway_id = data.oci_core_nat_gateway.nat_gateway.id
+    compartment_id = var.compartment_id
+
+    #Optional
+    #display_name = var.nat_gateway_display_name
+    #state = var.nat_gateway_state
+    vcn_id = oci_core_vcn.test_vcn.id
 }
 
 /*

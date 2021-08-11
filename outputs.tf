@@ -13,7 +13,7 @@ output "drg_id" {
 
 output "nat_gateway_id" {
   description = "id of nat gateway if it is created"
-  value       = join(",", data.oci_core_nat_gateway.nat_gateway[*].id)
+  value       = join(",", data.oci_core_nat_gateways.nat_gateway[*].id)
 }
 
 output "internet_gateway_id" {
@@ -69,7 +69,7 @@ output "lpg_all_attributes" {
 
 output "nat_gateway_all_attributes" {
   description = "all attributes of created nat gateway"
-  value       = { for k, v in data.oci_core_nat_gateway.nat_gateway : k => v }
+  value       = { for k, v in data.oci_core_nat_gateways.nat_gateway : k => v }
 }
 
 output "nat_route_all_attributes" {
