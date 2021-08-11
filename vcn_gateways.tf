@@ -236,7 +236,7 @@ resource "oci_core_drg" "drg" {
 
 resource "oci_core_drg_attachment" "drg" {
   drg_id = oci_core_drg.drg[count.index].id
-  vcn_id = oci_core_vcn.vcn.id
+  vcn_id = data.oci_core_vcn.vcn.id
 
   count = var.create_drg == true ? 1 : 0
 }
@@ -252,7 +252,7 @@ resource "oci_core_local_peering_gateway" "lpg" {
 
   freeform_tags = var.tags
 
-  vcn_id = oci_core_vcn.vcn.id
+  vcn_id = data.oci_core_vcn.vcn.id
 
   #Optional
   peer_id        = can(each.value.peer_id) == false ? null : each.value.peer_id
