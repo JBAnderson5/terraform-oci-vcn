@@ -28,12 +28,12 @@ output "service_gateway_id" {
 
 output "ig_route_id" {
   description = "id of internet gateway route table"
-  value       = join(",", data.oci_core_route_tables.default.id)#TODO:check if finding datasource, then fix datasource
+  value       = data.oci_core_route_tables.default.id#TODO:check if finding datasource, then fix datasource
 }
 
 output "nat_route_id" {
   description = "id of VCN NAT gateway route table"
-  value       = join(",", data.oci_core_route_tables.default.id)
+  value       = data.oci_core_route_tables.default.id
 }
 
 
