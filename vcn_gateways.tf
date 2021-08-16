@@ -23,12 +23,12 @@ data "oci_core_internet_gateways" "ig" {
 }
 
 
-data "oci_core_route_tables" "default" {
+data "oci_core_route_tables" "ig" {
     #Required
     compartment_id = var.compartment_id
 
     #Optional
-    #display_name = var.route_table_display_name
+    display_name = var.public_route_table_display_name
     vcn_id = data.oci_core_vcn.vcn.id
 }
 
@@ -159,6 +159,15 @@ data "oci_core_nat_gateways" "nat_gateway" {
     #Optional
     #display_name = var.nat_gateway_display_name
     #state = var.nat_gateway_state
+    vcn_id = data.oci_core_vcn.vcn.id
+}
+
+data "oci_core_route_tables" "nat" {
+    #Required
+    compartment_id = var.compartment_id
+
+    #Optional
+    display_name = var.private_route_table_display_name
     vcn_id = data.oci_core_vcn.vcn.id
 }
 

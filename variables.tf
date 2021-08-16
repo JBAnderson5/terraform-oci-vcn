@@ -18,6 +18,17 @@ variable "vcn_id" {
   type        = string
   default     = null
 }
+variable "private_route_table_display_name" {
+  description = "the display name of private route table"
+  type        = string
+  default     = null
+}
+variable "public_route_table_display_name" {
+  description = "the display name of public route table"
+  type        = string
+  default     = null
+}
+
 
 
 # general oci parameters
