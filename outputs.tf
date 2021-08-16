@@ -13,17 +13,17 @@ output "drg_id" {
 
 output "nat_gateway_id" {
   description = "id of nat gateway if it is created"
-  value       = join(",", data.oci_core_nat_gateways.nat_gateway.nat_gateways[0].id)
+  value       = data.oci_core_nat_gateways.nat_gateway.nat_gateways[0].id
 }
 
 output "internet_gateway_id" {
   description = "id of internet gateway if it is created"
-  value       = join(",", data.oci_core_internet_gateways.internet_gateway.gateways[0].id)
+  value       = data.oci_core_internet_gateways.internet_gateway.gateways[0].id
 }
 
 output "service_gateway_id" {
   description = "id of service gateway if it is created"
-  value       = join(",", data.oci_core_service_gateways.service_gateway.service_gateways[0].id)
+  value       = data.oci_core_service_gateways.service_gateway.service_gateways[0].id
 }
 
 output "ig_route_id" {
