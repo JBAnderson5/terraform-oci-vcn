@@ -13,7 +13,7 @@ output "drg_id" {
 
 output "nat_gateway_id" {
   description = "id of nat gateway if it is created"
-  value       = join(",", data.oci_core_nat_gateways.nat_gateway.gateways[0].id)
+  value       = join(",", data.oci_core_nat_gateways.nat_gateway.nat_gateways[0].id)
 }
 
 output "internet_gateway_id" {
@@ -23,7 +23,7 @@ output "internet_gateway_id" {
 
 output "service_gateway_id" {
   description = "id of service gateway if it is created"
-  value       = join(",", data.oci_core_service_gateways.service_gateway.gateways[0].id)
+  value       = join(",", data.oci_core_service_gateways.service_gateway.service_gateways[0].id)
 }
 
 output "ig_route_id" {
@@ -42,7 +42,7 @@ output "nat_route_id" {
 
 output "drg_all_attributes" {
   description = "all attributes of created drg"
-  value       = { for k, v in oci_core_drg.drg.route_tables[0] : k => v }
+  value       = { for k, v in oci_core_drg.drg : k => v }
 }
 
 output "drg_attachment_all_attributes" {
@@ -69,7 +69,7 @@ output "lpg_all_attributes" {
 
 output "nat_gateway_all_attributes" {
   description = "all attributes of created nat gateway"
-  value       = { for k, v in data.oci_core_nat_gateways.nat_gateway.gateways[0] : k => v }
+  value       = { for k, v in data.oci_core_nat_gateways.nat_gateway.nat_gateways[0] : k => v }
 }
 
 output "nat_route_all_attributes" {
@@ -79,7 +79,7 @@ output "nat_route_all_attributes" {
 
 output "service_gateway_all_attributes" {
   description = "all attributes of created service gateway"
-  value       = { for k, v in data.oci_core_service_gateways.service_gateway.gateways[0] : k => v }
+  value       = { for k, v in data.oci_core_service_gateways.service_gateway.service_gateways[0] : k => v }
 }
 
 output "vcn_all_attributes" {
