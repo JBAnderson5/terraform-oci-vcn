@@ -16,7 +16,7 @@ resource "oci_core_internet_gateway" "ig" {
   count = var.internet_gateway_enabled == true ? 1 : 0
 }
 */
-data "oci_core_internet_gateways" "ig" {
+data "oci_core_internet_gateways" "internet_gateway" {
     #Required
     compartment_id = var.compartment_id #TODO:needs to be A2C-Network compartment
     vcn_id = data.oci_core_vcn.vcn.id
